@@ -336,3 +336,9 @@ likely_to_leave_list2 <- employees_current %>%
 
 write.csv(x = likely_to_leave_list1, "ctree_model_likely_to_leave.csv",
           row.names = FALSE)
+
+
+
+# neural network ----------------------------------------------------------
+
+
