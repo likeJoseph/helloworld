@@ -1,20 +1,34 @@
 ### Exercise 1
+● Import `inventory.json` to the “inventory” collection.
+● Find documents where the `tag` field contains the following elements:
+⇒ “appliance”, “school” and “book”
 ```javascript
 // Exercise 1-1 
 db.inventory.find({tags: {$all: ["appliance", "school", "book"]}}).pretty()
-
+```
+● Find all documents but projects items only the elements from the 2nd to 4th positions in the `tags` field.
+○ Hint – $slice: [skip, limit]
+```javascript
 // Exercise 1-2
 db.inventory.find({}, {tags: {$slice: [1, 3]}}).pretty()
-
+```
+● Find documents that have blue `color` with `size` “6” at the same time in the `qty` field.
+○ Hint – $elemMatch
+```javascript
 // Exercise 1-3
 db.inventory.find({qty: {$elemMatch: {size: "6", color: "blue"}}}).pretty()
 ```
 
 ### Exercise 2
+● Import `store.json` to the “store” collection.
+● Print purchased `items` where an item’s `name` in a document is “iPhone Xs”.
 ```javascript
 // Exercise 2-1
 db.store.find({"items.name": "iPhone Xs"}).pretty()
-
+```
+● Print the buyer’s name where `items` field contains the document that price is less than 400 dollars.
+○ Hint – <array.field>, Projection
+```javascript
 // Exercise 2-2
 db.store.find({"items.price": {$lt: 400}}, {_id: 0, "buyer.name": 1})
 ```
