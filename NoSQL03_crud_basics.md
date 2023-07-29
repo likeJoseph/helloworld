@@ -14,6 +14,10 @@ db.movies.updateOne({title: "Inception"}, {$set: {director: "Christopher Nolan}}
 ```
 
 ### Exercise 3
+Perform the following operations on the “movies” collection:
+1. Delete documents where `score` is 92. 
+2. Print all documents.
+   
 ```javascript
 db.movies.deleteMany({score: 92})
 ```
