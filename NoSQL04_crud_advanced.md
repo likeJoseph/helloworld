@@ -1,18 +1,18 @@
 ### Exercise 1
-● Import `inventory.json` to the “inventory” collection.
+● Import `inventory.json` to the “inventory” collection.<br>
 ● Find documents where the `tag` field contains the following elements:
 ⇒ “appliance”, “school” and “book”
 ```javascript
 // Exercise 1-1 
 db.inventory.find({tags: {$all: ["appliance", "school", "book"]}}).pretty()
 ```
-● Find all documents but projects items only the elements from the 2nd to 4th positions in the `tags` field.
+● Find all documents but projects items only the elements from the 2nd to 4th positions in the `tags` field.<br>
 ○ Hint – $slice: [skip, limit]
 ```javascript
 // Exercise 1-2
 db.inventory.find({}, {tags: {$slice: [1, 3]}}).pretty()
 ```
-● Find documents that have blue `color` with `size` “6” at the same time in the `qty` field.
+● Find documents that have blue `color` with `size` “6” at the same time in the `qty` field.<br>
 ○ Hint – $elemMatch
 ```javascript
 // Exercise 1-3
@@ -20,13 +20,13 @@ db.inventory.find({qty: {$elemMatch: {size: "6", color: "blue"}}}).pretty()
 ```
 
 ### Exercise 2
-● Import `store.json` to the “store” collection.
+● Import `store.json` to the “store” collection.<br>
 ● Print purchased `items` where an item’s `name` in a document is “iPhone Xs”.
 ```javascript
 // Exercise 2-1
 db.store.find({"items.name": "iPhone Xs"}).pretty()
 ```
-● Print the buyer’s name where `items` field contains the document that price is less than 400 dollars.
+● Print the buyer’s name where `items` field contains the document that price is less than 400 dollars.<br>
 ○ Hint – <array.field>, Projection
 ```javascript
 // Exercise 2-2
@@ -34,11 +34,19 @@ db.store.find({"items.price": {$lt: 400}}, {_id: 0, "buyer.name": 1})
 ```
 
 ### Exercise 3 
+● Perform on the following operations on the “inventory” collection.
+○ Count the total number of documents in the collection.
+○ Get the first two documents from the collection and print them.
 ```javascript
 // Exercise 3-1
 db.inventory.count()
 db.inventory.find().limit(2).pretty()
-
+```
+● Perform the following operations on the “store” collection:<br>
+○ ① Skip three document and ② get the next two documents and ③ print the nested field buyer’s 
+method only.
+[ { buyer: { method: 'cash' } }, { buyer: { method: 'credit' } } ]
+```javascript
 // Exercise 3-2
 db.store.find({}, {_id: 0, "buyer.method": 1}).skip(3).limit(2)
 ```
